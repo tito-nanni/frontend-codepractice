@@ -1,4 +1,7 @@
 import './App.css';
+import InvoiceTable from './components/InvoiceTable'
+import ModeButtons from './components/ModeButtons';
+import DescriptionCell from './components/DescriptionCell';
 
 const TEST_DATA = [
   { id: 0, description: 'Content plan', rate: 50, hours: 4 },
@@ -7,8 +10,15 @@ const TEST_DATA = [
   { id: 3, description: 'Website development', rate: 100, hours: 5 },
 ];
 
+
+
 function App() {
-  return <p>FIXME</p>;
+  return (
+    <> 
+ <InvoiceTable initialInvoiceData={TEST_DATA}/>
+  </>
+
+  )
 }
 
 export default App;
