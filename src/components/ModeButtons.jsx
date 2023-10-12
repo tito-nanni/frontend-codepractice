@@ -1,15 +1,14 @@
 
-const ModeButtons = ({ isEditing }) => {
+const ModeButtons = ({ isEditing, saveClick, editClick, funkyDelete }) => {
 
   return isEditing ? (
     <td>
-        <button>Save</button>
+        <button onClick={saveClick}>Save</button>
     </td>
   ) : (
    <td>
-
-    <button>Delete</button>
-    <button>Edit</button>
+    <button onClick={funkyDelete}>Delete</button>
+    <button onClick={editClick}>Edit</button>
    </td>
   )
 }
