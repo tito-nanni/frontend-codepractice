@@ -4,10 +4,10 @@ const TableHeader = () => {
     return (
         <tr>
             <th></th>
-            <th>Description</th>
-            <th>Rate</th>
-            <th>Hours</th>
-            <th>Amount</th>
+            <th>Player</th>
+            <th>Rushing Yards</th>
+            <th>Receiving Yards</th>
+            <th>Total Yards</th>
         </tr>
     )
 }

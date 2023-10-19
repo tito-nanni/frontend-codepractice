@@ -1,5 +1,5 @@
 
-const HoursCell = ({ isEditing, value, onValueChange }) => {
+const ReceivingYardsCell = ({ isEditing, value, onValueChange }) => {
 
   return isEditing ? (
     <td>
@@ -14,4 +14,4 @@ const HoursCell = ({ isEditing, value, onValueChange }) => {
   )
 }
 
-export default HoursCell
+export default ReceivingYardsCell

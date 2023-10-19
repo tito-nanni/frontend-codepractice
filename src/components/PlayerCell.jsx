@@ -1,5 +1,5 @@
 
-const DescriptionCell = ({ isEditing, value, onValueChange }) => {
+const PlayerCell = ({ isEditing, value, onValueChange }) => {
 
   return isEditing ? (
     <td>
@@ -14,4 +14,4 @@ const DescriptionCell = ({ isEditing, value, onValueChange }) => {
   )
 }
 
-export default DescriptionCell
+export default PlayerCell

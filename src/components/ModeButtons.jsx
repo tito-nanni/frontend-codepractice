@@ -1,16 +1,23 @@
+import { useState } from 'react'
 
-const ModeButtons = ({ isEditing, saveClick, editClick, funkyDelete }) => {
+const ModeButtons = ({ isEditing, saveClick, editClick, funkyDelete, hasVoted}) => {
 
-  return isEditing ? (
+const [voted, setVoted] = useState(hasVoted);
+
+const handleVote = () => {
+  setVoted(true);
+  saveClick()
+}
+
+  return (
     <td>
-        <button onClick={saveClick}>Save</button>
+      <button onClick={handleVote} disabled={voted}>
+        {voted ? 'Voted !' : 'Vote'}
+      </button>
     </td>
-  ) : (
-   <td>
-    <button onClick={funkyDelete}>Delete</button>
-    <button onClick={editClick}>Edit</button>
-   </td>
   )
 }
+
+
 
 export default ModeButtons

@@ -1,12 +1,20 @@
+import React, { useState } from 'react';
+import ThankYouScreen from './ThankYouScreen';
+
 
 const addButton = ({ addClick }) => {
+  const [showThankYou, setShowThankYou] = useState(false);
+
+  const handleButtonClick = () => {
+    addClick();
+    setShowThankYou(true);
+  }
+
   return (
-    <tr>
-      <td></td>
-      <td colSpan={4} >
-        <button onClick={addClick}>Add Row</button>
-      </td>
-    </tr>
+    <div>
+      <button onClick={handleButtonClick}>Submit</button>
+      {showThankYou && <ThankYouScreen />}
+    </div>
   )
 }
 

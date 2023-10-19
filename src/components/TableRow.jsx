@@ -1,24 +1,23 @@
 import ModeButtons from "./ModeButtons"
-import DescriptionCell from "./DescriptionCell"
-import RateCell from "./RateCell"
-import HoursCell from "./HoursCell"
-import formatCurrency from "../utils/formatCurrency"
+import PlayerCell from "./PlayerCell"
+import RushingYardsCell from "./RushingYardsCell"
+import ReceivingYardsCell from "./ReceivingYardsCell"
 import { useState } from 'react'
 import axios from 'axios'
 
 const TableRow = ({ initialIsEditing, initialInvoiceData, deleteFunc, id }) => {
 
+  const [hasVoted, setHasVoted] = useState(false);
   const [editMode, setEditMode] = useState(initialIsEditing)
-  const [description, setDescription] = useState(initialInvoiceData.description)
-  const [rate, setRate] = useState(initialInvoiceData.rate)
-  const [hours, setHours] = useState(initialInvoiceData.hours)
+  const [player, setPlayer] = useState(initialInvoiceData.player)
+  const [rushingYards, setrushingYards] = useState(initialInvoiceData.rushingYards)
+  const [receivingYards, setreceivingYards] = useState(initialInvoiceData.receivingYards)
 
   const changeNormalMode = async () => {
-    // create new object to send back (as the body) the current state vals of desc/rate/hours
     let bodyObj = {
-      description: description,
-      rate: rate,
-      hours: hours
+      player: player,
+      rushingYards: rushingYards,
+      receivingYards: receivingYards
     }
     const response = await axios.put(`/editInvoice/${id}`, bodyObj)
 
@@ -38,26 +37,30 @@ const TableRow = ({ initialIsEditing, initialInvoiceData, deleteFunc, id }) => {
     <tr>
     <ModeButtons 
     isEditing={editMode} 
-    saveClick={changeNormalMode}
+    saveClick={() => {
+      changeNormalMode();
+      setHasVoted(true);
+    }}
     editClick={changeEditMode}
     funkyDelete={deleteFunc}
+    hasVoted={hasVoted}
     />
-    <DescriptionCell 
+    <PlayerCell 
     isEditing={editMode} 
-    value={description}
-    onValueChange={setDescription}
+    value={player}
+    onValueChange={setPlayer}
     />
-    <RateCell 
+    <RushingYardsCell 
     isEditing={editMode} 
-    value={rate}
-    onValueChange={setRate}
+    value={rushingYards}
+    onValueChange={setrushingYards}
     />
-    <HoursCell 
+    <ReceivingYardsCell 
     isEditing={editMode} 
-    value={hours}
-    onValueChange={setHours}
+    value={receivingYards}
+    onValueChange={setreceivingYards}
     />
-    <td>{formatCurrency(rate * hours)}</td>
+    <td>{(rushingYards + receivingYards)}</td>
 </tr>
   )
 }
